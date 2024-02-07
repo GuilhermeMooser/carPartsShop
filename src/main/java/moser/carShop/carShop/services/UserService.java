@@ -1,17 +1,20 @@
 package moser.carShop.carShop.services;
 
+import jakarta.persistence.EntityNotFoundException;
 import moser.carShop.carShop.dto.UserDTO;
 import moser.carShop.carShop.entities.User;
 import moser.carShop.carShop.repositories.UserRepository;
+import moser.carShop.carShop.services.exceptions.DatabaseException;
+import moser.carShop.carShop.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -20,9 +23,14 @@ public class UserService {
     private UserRepository repository;
 
     public UserDTO findById(Long idUser) {
-        User u = repository.findById(idUser).get();
-        UserDTO userDTO = new UserDTO(u);
-        return userDTO;
+        Optional<User> user = repository.findById(idUser);
+
+        if(user.get() != null) {
+            UserDTO userDTO = new UserDTO(user.get());
+            return userDTO;
+        } else {
+            throw new ResourceNotFoundException(idUser);
+        }
     }
 
     public List<UserDTO> findAll() {
@@ -42,30 +50,27 @@ public class UserService {
     }
 
     public void delete(Long idUser) {
-        repository.deleteById(idUser);
-//        try {
-//            repository.deleteById(idUser);
-//        }
-//        catch (EmptyResultDataAccessException e) {
-//            throw new ResourceNotFoundException(id);
-//        }
-//        catch (DataIntegrityViolationException e) {
-////            throw new DatabaseException(e.getMessage());
-//        }
+        try {
+            repository.deleteById(idUser);
+        }
+        catch (EmptyResultDataAccessException e) {
+            throw new ResourceNotFoundException(idUser);
+        }
+        catch (DataIntegrityViolationException e) {
+            throw new DatabaseException(e.getMessage());
+        }
     }
 
     public User update(Long idUser, UserDTO userDTO) {
         try {
-            User originalUser = repository.getReferenceById(idUser);
 
+            User originalUser = repository.getReferenceById(idUser);
             updateUser(originalUser, userDTO.transformToObject());
 
             return repository.save(originalUser);
-        } catch(Exception e) {
-            e.printStackTrace();
+        } catch(EntityNotFoundException e) {
+            throw new ResourceNotFoundException(idUser);
         }
-        //AjustarRetorno
-        return null;
     }
 
     public void updateUser(User originalUser, User u) {

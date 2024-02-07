@@ -5,8 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import moser.carShop.carShop.enums.EstadoConservacao;
+import moser.carShop.carShop.enums.PieceStatus;
 
-import java.sql.Timestamp;
 import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -33,6 +33,10 @@ public class Piece {
     @Column
     private EstadoConservacao estadoConservacao;
 
+    @Enumerated (EnumType.ORDINAL)
+    @Column
+    private PieceStatus pieceStatus;
+
     @Column
     private Date dtCriacao;
 
@@ -46,4 +50,15 @@ public class Piece {
     @ManyToOne
     @JoinColumn(name="empresa_id")
     private Empresa empresa;
+
+    public Piece(Long id, String nome, String codigo, EstadoConservacao estadoConservacao, PieceStatus pieceStatus, Date dtCriacao, Set<Car> carros, Empresa empresa) {
+        this.id = id;
+        this.nome = nome;
+        this.codigo = codigo;
+        this.estadoConservacao = estadoConservacao;
+        this.pieceStatus = pieceStatus;
+        this.dtCriacao = dtCriacao;
+        this.carros = carros;
+        this.empresa = empresa;
+    }
 }
