@@ -26,6 +26,9 @@ public class Piece {
     @Column
     private String nome;
 
+    @Column
+    private String marca;
+
     @Column(unique = true)
     private String codigo;
 
@@ -51,10 +54,11 @@ public class Piece {
     @JoinColumn(name="empresa_id")
     private Empresa empresa;
 
-    public Piece(Long id, String nome, String codigo, EstadoConservacao estadoConservacao, PieceStatus pieceStatus, Date dtCriacao, Set<Car> carros, Empresa empresa) {
+    public Piece(Long id, String nome, String codigo, String marca, EstadoConservacao estadoConservacao, PieceStatus pieceStatus, Date dtCriacao, Set<Car> carros, Empresa empresa) {
         this.id = id;
         this.nome = nome;
         this.codigo = codigo;
+        this.marca = marca;
         this.estadoConservacao = estadoConservacao;
         this.pieceStatus = pieceStatus;
         this.dtCriacao = dtCriacao;

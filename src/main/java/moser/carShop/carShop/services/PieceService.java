@@ -76,6 +76,7 @@ public class PieceService {
     public void updatePiece(Piece originalPiece, Piece p) {
         originalPiece.setNome(p.getNome());
         originalPiece.setCodigo(p.getCodigo());
+        originalPiece.setMarca(p.getMarca());
         originalPiece.setEstadoConservacao(p.getEstadoConservacao());
         originalPiece.setPieceStatus(p.getPieceStatus());
         originalPiece.setCarros(p.getCarros());

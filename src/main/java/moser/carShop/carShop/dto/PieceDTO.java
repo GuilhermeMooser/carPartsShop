@@ -5,7 +5,6 @@ import lombok.Setter;
 import moser.carShop.carShop.entities.Car;
 import moser.carShop.carShop.entities.Empresa;
 import moser.carShop.carShop.entities.Piece;
-import moser.carShop.carShop.entities.User;
 import moser.carShop.carShop.enums.EstadoConservacao;
 import moser.carShop.carShop.enums.PieceStatus;
 
@@ -20,6 +19,7 @@ public class PieceDTO {
     private Long id;
     private String nome;
     private String codigo;
+    private String marca;
     private EstadoConservacao estadoConservacao;
     private PieceStatus pieceStatus;
     private Date dtCriacao;
@@ -38,8 +38,12 @@ public class PieceDTO {
         empresa = piece.getEmpresa();
     }
 
+    public PieceDTO() {
+
+    }
+
     public Piece transformToObject() {
-        return new Piece(id, nome, codigo, estadoConservacao, pieceStatus, dtCriacao, carros, empresa);
+        return new Piece(id, nome, codigo, marca, estadoConservacao, pieceStatus, dtCriacao, carros, empresa);
     }
 
 

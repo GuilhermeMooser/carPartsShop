@@ -38,7 +38,7 @@ public class PieceController {
         Piece p = pieceService.createPiece(pieceDTO.transformToObject());
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(p.getId()).toUri();
-        return ResponseEntity.created(uri).body(new UserDTO(p));
+        return ResponseEntity.created(uri).body(new PieceDTO(p));
     }
 
     @DeleteMapping(value = "/{idPiece}")

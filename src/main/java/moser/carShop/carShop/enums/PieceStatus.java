@@ -4,7 +4,8 @@ public enum PieceStatus {
 
     ENVIADO(1),
     AGUARDANDO_RETIRADA(2),
-    ENTREGUE(3);
+    ENTREGUE(3),
+    DISPONIVEL(4);
 
     private int code;
 
