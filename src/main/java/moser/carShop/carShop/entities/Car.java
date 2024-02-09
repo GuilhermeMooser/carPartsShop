@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Timestamp;
 import java.util.Date;
 
 @AllArgsConstructor
@@ -36,4 +35,9 @@ public class Car {
     @JoinColumn(name="peca_id")
     private Piece piece;
 
+
+    public Car(String nome, int ano) {
+        this.nome = nome;
+        this.ano = ano;
+    }
 }
