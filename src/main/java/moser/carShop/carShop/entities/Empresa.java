@@ -47,4 +47,12 @@ public class Empresa {
     @OneToMany(mappedBy = "empresa")
     private Set<Endereco> enderecos = new LinkedHashSet<>(0);
 
+
+    public Empresa (String nome, String cpnj, String razaoSocial,  String nomeFantasia,  User user) {
+        this.nome = nome;
+        this.cpnj = cpnj;
+        this.razaoSocial = razaoSocial;
+        this.nomeFantasia = nomeFantasia;
+        this.user = user;
+    }
 }

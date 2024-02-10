@@ -35,4 +35,13 @@ public class Endereco {
     @JoinColumn(name="empresa_id")
     private Empresa empresa;
 
+    public Endereco(String rua, String bairro, String cidade, String estado, String pais, Empresa empresa) {
+        this.rua = rua;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.estado = estado;
+        this.pais = pais;
+        this.empresa = empresa;
+    }
+
 }
