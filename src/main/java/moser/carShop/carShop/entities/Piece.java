@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import moser.carShop.carShop.enums.EstadoConservacao;
 import moser.carShop.carShop.enums.PieceStatus;
 
+import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -17,7 +19,7 @@ import java.util.Set;
 @Data
 @Entity
 @Table(name="piece")
-public class Piece {
+public class Piece implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -31,6 +33,9 @@ public class Piece {
 
     @Column(unique = true)
     private String codigo;
+
+    @Column(scale = 2)
+    private BigDecimal price;
 
     @Enumerated (EnumType.ORDINAL)
     @Column
@@ -47,18 +52,20 @@ public class Piece {
     @Version
     private Date dtModificacao;
 
+    //Ter controle dos carros de cada peça
     @OneToMany(mappedBy = "piece")
     private Set<Car> carros = new LinkedHashSet<>(0);
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name="empresa_id")
     private Empresa empresa;
 
-    public Piece(Long id, String nome, String codigo, String marca, EstadoConservacao estadoConservacao, PieceStatus pieceStatus, Date dtCriacao, Set<Car> carros, Empresa empresa) {
+    public Piece(Long id, String nome, String codigo, String marca, BigDecimal price, EstadoConservacao estadoConservacao, PieceStatus pieceStatus, Date dtCriacao, Set<Car> carros, Empresa empresa) {
         this.id = id;
         this.nome = nome;
         this.codigo = codigo;
         this.marca = marca;
+        this.price = price;
         this.estadoConservacao = estadoConservacao;
         this.pieceStatus = pieceStatus;
         this.dtCriacao = dtCriacao;

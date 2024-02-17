@@ -77,6 +77,7 @@ public class PieceService {
         originalPiece.setNome(p.getNome());
         originalPiece.setCodigo(p.getCodigo());
         originalPiece.setMarca(p.getMarca());
+        originalPiece.setPrice(p.getPrice());
         originalPiece.setEstadoConservacao(p.getEstadoConservacao());
         originalPiece.setPieceStatus(p.getPieceStatus());
         originalPiece.setCarros(p.getCarros());

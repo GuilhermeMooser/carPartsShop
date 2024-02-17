@@ -1,6 +1,7 @@
 package moser.carShop.carShop.services;
 
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import moser.carShop.carShop.dto.EmpresaDTO;
 import moser.carShop.carShop.entities.Empresa;
 import moser.carShop.carShop.repositories.EmpresaRepository;
@@ -12,10 +13,12 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class EmpresaService {
 
     @Autowired
@@ -43,6 +46,8 @@ public class EmpresaService {
     }
 
     public Empresa createCompany(Empresa empresa) {
+        //Ajustar aqui, tem que criar uma nova excecao pelo visto\
+        empresa.setDtCriacao(new Date());
         Empresa e = repository.save(empresa);
         return e;
     }

@@ -1,5 +1,7 @@
 package moser.carShop.carShop.dto;
 
+import lombok.Getter;
+import lombok.Setter;
 import moser.carShop.carShop.entities.Empresa;
 import moser.carShop.carShop.entities.Endereco;
 import moser.carShop.carShop.entities.User;
@@ -7,7 +9,8 @@ import moser.carShop.carShop.entities.User;
 import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
-
+@Getter
+@Setter
 public class EmpresaDTO {
 
     private Long id;
@@ -23,8 +26,6 @@ public class EmpresaDTO {
     public EmpresaDTO(Empresa empresa) {
         id = empresa.getId();
         nome = empresa.getNome();
-        dtCriacao = empresa.getDtCriacao();
-        dtModificacao = empresa.getDtModificacao();
         cpnj = empresa.getCpnj();
         razaoSocial = empresa.getRazaoSocial();
         nomeFantasia = empresa.getNomeFantasia();

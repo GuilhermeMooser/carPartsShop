@@ -8,6 +8,7 @@ import moser.carShop.carShop.entities.Piece;
 import moser.carShop.carShop.enums.EstadoConservacao;
 import moser.carShop.carShop.enums.PieceStatus;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -20,6 +21,7 @@ public class PieceDTO {
     private String nome;
     private String codigo;
     private String marca;
+    private BigDecimal price;
     private EstadoConservacao estadoConservacao;
     private PieceStatus pieceStatus;
     private Date dtCriacao;
@@ -31,6 +33,8 @@ public class PieceDTO {
         id = piece.getId();
         nome = piece.getNome();
         codigo = piece.getCodigo();
+        marca = piece.getMarca();
+        price = piece.getPrice();
         estadoConservacao = piece.getEstadoConservacao();
         pieceStatus = piece.getPieceStatus();
         dtCriacao = piece.getDtCriacao();
@@ -43,7 +47,7 @@ public class PieceDTO {
     }
 
     public Piece transformToObject() {
-        return new Piece(id, nome, codigo, marca, estadoConservacao, pieceStatus, dtCriacao, carros, empresa);
+        return new Piece(id, nome, codigo, marca, price, estadoConservacao, pieceStatus, dtCriacao, carros, empresa);
     }
 
 

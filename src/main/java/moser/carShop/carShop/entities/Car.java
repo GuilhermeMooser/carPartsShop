@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @AllArgsConstructor
@@ -12,7 +13,7 @@ import java.util.Date;
 @Data
 @Entity
 @Table(name="car")
-public class Car {
+public class Car implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -34,7 +35,6 @@ public class Car {
     @ManyToOne
     @JoinColumn(name="peca_id")
     private Piece piece;
-
 
     public Car(String nome, int ano) {
         this.nome = nome;

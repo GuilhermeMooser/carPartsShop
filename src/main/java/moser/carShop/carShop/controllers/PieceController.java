@@ -1,11 +1,8 @@
 package moser.carShop.carShop.controllers;
 
 import moser.carShop.carShop.dto.PieceDTO;
-import moser.carShop.carShop.dto.UserDTO;
 import moser.carShop.carShop.entities.Piece;
-import moser.carShop.carShop.entities.User;
 import moser.carShop.carShop.services.PieceService;
-import moser.carShop.carShop.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
